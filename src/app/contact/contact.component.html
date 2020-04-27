@@ -1,0 +1,29 @@
+<ActionBar title="Contact Us" class="action-bar" >
+<NavigationButton ios:visibility="collapsed" icon="res://menu" (tap)="onDrawerButtonTap()"></NavigationButton>
+   
+    <ActionItem icon="res://menu" android:visibility="collapsed" (tap)="onDrawerButtonTap()"
+        ios.position="left">
+    </ActionItem>
+
+</ActionBar>
+<ScrollView orientation="vertical" class="page">
+    <GridLayout class="m-5" rows="auto  auto">
+         <StackLayout  row="0" class="p-10  border">
+    
+        
+            <Label class="h2" text="Contact Information"></Label>
+            <Label class="body" text="
+            121, Clear Water Bay Road
+            Clear Water Bay, Kowloon
+            HONG KONG
+            Tel: +852 1234 5678
+            Fax: +852 8765 4321
+            Email:confusion@food.net" textWrap="true"></Label>      
+        </StackLayout>
+
+         <GridLayout row="1" orientation="horizontal" rows="*" columns="*, *" class="m-t-20">
+            <Button row="0" col="0" [text]=" '&#xf095;' + ' Call'" class="btn btn-rounded-sm btn-outline no-border fa " (tap)="callRestaurant()"> </Button>
+            <Button row="0" col="1" [text]=" '&#xf0e0;' + ' Email'" class="btn btn-rounded-sm btn-outline no-border fa" (tap)="sendEmail()"></Button>
+        </GridLayout> 
+
+    </GridLayout>

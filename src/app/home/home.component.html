@@ -1,0 +1,48 @@
+<ActionBar title="Home" class="action-bar">
+<NavigationButton ios:visibility="collapsed" icon="res://menu" (tap)="onDrawerButtonTap()"></NavigationButton>
+    
+    <ActionItem icon="res://menu" android:visibility="collapsed" (tap)="onDrawerButtonTap()"
+        ios.position="left">
+    </ActionItem>
+
+</ActionBar>
+<StackLayout tkMainContent (swipe)="onSwipe($event)">
+    <GridLayout horizontalAlignment="center" verticalAlignment="top" rows="*" columns="*" height="95%">
+        <GridLayout id="leftCard" row="0" margin="5" rows="* auto" columns="*" 
+            *ngIf="dish" [visibility]="showLeftCard ? 'visible' : 'collapsed'" class="border"> 
+            <Image row="0" stretch="aspectFill" [src]="baseURL + dish.image"></Image>
+            <StackLayout padding="10" row="1">
+                <Label class="h2" [text]="dish.name"></Label>
+                <Label class="body" [text]="dish.description" textWrap="true"></Label>      
+            </StackLayout>
+        </GridLayout>
+        <ActivityIndicator busy="true"  *ngIf="!(dish || dishErrMess)" width="50" height="50" class="activity-indicator"></ActivityIndicator>
+        <Label *ngIf="dishErrMess" [text]="'Error: ' + dishErrMess"></Label>
+        <GridLayout id="middleCard" row="0" margin="5" rows="* auto" columns="*"  
+            *ngIf="promotion" [visibility]="showMiddleCard ? 'visible' : 'collapsed'" class="border"> 
+            <Image row="0" stretch="aspectFill" [src]="baseURL + promotion.image"></Image>
+            <StackLayout padding="10" row="1">
+                <Label class="h2" [text]="promotion.name"></Label>
+                <Label class="body" [text]="promotion.description" textWrap="true"></Label>      
+            </StackLayout>
+        </GridLayout>
+        <ActivityIndicator busy="true"  *ngIf="!(promotion || promoErrMess)" width="50" height="50" class="activity-indicator"></ActivityIndicator>
+        <Label *ngIf="promoErrMess" [text]="'Error: ' + promoErrMess"></Label>
+        <GridLayout id="rightCard" row="0" margin="5" rows="* auto" columns="*" 
+            *ngIf="leader" [visibility]="showRightCard ? 'visible' : 'collapsed'" class="border"> 
+            <Image row="0" stretch="aspectFill" [src]="baseURL + leader.image"></Image>
+            <StackLayout padding="10" row="1">
+                <Label class="h2" [text]="leader.name"></Label>
+                <Label class="h3" [text]="leader.designation"></Label>
+                <Label class="body" [text]="leader.description" textWrap="true"></Label>      
+            </StackLayout>
+        </GridLayout>
+        <ActivityIndicator busy="true"  *ngIf="!(leader || leaderErrMess)" width="50" height="50" class="activity-indicator"></ActivityIndicator>
+        <Label *ngIf="leaderErrMess" [text]="'Error: ' + leaderErrMess"></Label>
+    </GridLayout>
+    <StackLayout horizontalAlignment="center" orientation="horizontal">
+        <Label class="fa" [text]="(showLeftCard ? '&#xf111;' : '&#xF10C;')" > </Label>
+        <Label class="m-l-15 fa" [text]="(showMiddleCard ? '&#xf111;' : '&#xF10C;')"></Label>
+        <Label class="m-l-15 fa" [text]="(showRightCard ? '&#xf111;' : '&#xF10C;')"></Label>
+    </StackLayout>
+</StackLayout>
